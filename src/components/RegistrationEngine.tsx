@@ -134,6 +134,32 @@ const BACKEND_API_URL =
   (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_API_URL) ||
   'http://127.0.0.1:8000';
 
+// Cloudflare Turnstile Public Site Key (Defaults to Cloudflare's official testing key if not set)
+// Cloudflare Always-Passes Testing Key: '1x00000000000000000000AA'
+const TURNSTILE_SITE_KEY =
+  (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_TURNSTILE_SITE_KEY) ||
+  '1x00000000000000000000AA';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: string | HTMLElement,
+        options: {
+          sitekey: string;
+          callback?: (token: string) => void;
+          'error-callback'?: () => void;
+          'expired-callback'?: () => void;
+          theme?: 'light' | 'dark' | 'auto';
+          size?: 'normal' | 'flexible' | 'compact';
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
+    };
+  }
+}
+
 const CARRY1ST_AFFILIATE_URL = 'https://shop.carry1st.com/?aff=reyhan';
 
 // Verified KyU Esports WhatsApp Division Links from backend config
@@ -226,6 +252,10 @@ export default function RegistrationEngine() {
   const gameDropdownRef = useRef<HTMLDivElement | null>(null);
   const [gameDropdownOpen, setGameDropdownOpen] = useState(false);
 
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
+
   const [formData, setFormData] = useState<FormDataState>({
     fullName: '',
     regNumber: '',
@@ -234,6 +264,69 @@ export default function RegistrationEngine() {
     carry1stEmail: '',
     agreedToMandate: true,
   });
+
+  // Render Cloudflare Turnstile widget explicitly
+  useEffect(() => {
+    let checkInterval: ReturnType<typeof setInterval> | null = null;
+    let attempts = 0;
+
+    const tryRenderTurnstile = () => {
+      if (
+        typeof window !== 'undefined' &&
+        window.turnstile &&
+        turnstileContainerRef.current &&
+        !turnstileWidgetIdRef.current
+      ) {
+        try {
+          const widgetId = window.turnstile.render(turnstileContainerRef.current, {
+            sitekey: TURNSTILE_SITE_KEY,
+            theme: 'light',
+            callback: (token: string) => {
+              setTurnstileToken(token);
+              if (errorMessage) setErrorMessage(null);
+            },
+            'error-callback': () => {
+              // On widget error, allow graceful degradation
+              setTurnstileToken('client_error');
+            },
+            'expired-callback': () => {
+              setTurnstileToken(null);
+            },
+          });
+          turnstileWidgetIdRef.current = widgetId;
+          if (checkInterval) clearInterval(checkInterval);
+        } catch (e) {
+          console.warn('Turnstile render warning:', e);
+        }
+      }
+    };
+
+    tryRenderTurnstile();
+
+    if (!turnstileWidgetIdRef.current) {
+      checkInterval = setInterval(() => {
+        attempts += 1;
+        tryRenderTurnstile();
+        if (attempts > 20 && checkInterval) {
+          clearInterval(checkInterval);
+        }
+      }, 300);
+    }
+
+    return () => {
+      if (checkInterval) clearInterval(checkInterval);
+      if (
+        typeof window !== 'undefined' &&
+        window.turnstile &&
+        turnstileWidgetIdRef.current
+      ) {
+        try {
+          window.turnstile.remove(turnstileWidgetIdRef.current);
+        } catch (e) {}
+        turnstileWidgetIdRef.current = null;
+      }
+    };
+  }, []);
 
   // Close custom game dropdown when clicking outside
   useEffect(() => {
@@ -412,6 +505,7 @@ export default function RegistrationEngine() {
         primary_game: formData.primaryTitle,
         carry1st_email: formData.carry1stEmail.trim(),
         tribe_db_confirmed: formData.agreedToMandate,
+        turnstile_token: turnstileToken,
       };
 
       const response = await fetch(`${BACKEND_API_URL}/api/register`, {
@@ -857,6 +951,11 @@ export default function RegistrationEngine() {
                   I agree to follow the KyU Esports Club and Tribe Campus community rules, and to receive match notifications on WhatsApp.
                 </span>
               </label>
+
+              {/* Cloudflare Turnstile Verification Widget (Smart bot check) */}
+              <div className="py-1">
+                <div ref={turnstileContainerRef} className="cf-turnstile min-h-[65px]"></div>
+              </div>
 
               {/* Submission Action */}
               <div className="pt-1 flex flex-col sm:flex-row items-center justify-start gap-4">
