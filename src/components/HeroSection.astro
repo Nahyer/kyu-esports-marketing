@@ -1,0 +1,107 @@
+---
+const proofPoints = [
+  {
+    title: '100% Free to Play',
+    description: 'No registration fees. Open to every Kirinyaga University student.',
+  },
+  {
+    title: 'Official Campus Club',
+    description: 'Recognized student gaming community with certificates and leadership slots.',
+  },
+  {
+    title: 'Backed by Tribe by Carry1st',
+    description: "Part of Africa's largest gaming community with over 400,000 players.",
+  },
+];
+---
+
+<section class="relative">
+  <!-- Top Curved Black Hero Stage (.div-block-2822 archetype) -->
+  <div class="hero-stage-black pt-8 pb-32 sm:pt-14 sm:pb-44 lg:pt-20 lg:pb-64">
+    <!-- Subtle Geometric / Topographic Arena Wireframe Watermark -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.14]"
+      style="background-image: radial-gradient(circle at 50% 20%, rgba(251, 175, 23, 0.28), transparent 60%), linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 100% 100%, 56px 56px, 56px 56px;"
+    >
+    </div>
+
+    <div class="padding-global relative z-10">
+      <div class="container-large flex flex-col items-center text-center">
+        <!-- Primary Headline (.heading-23 92px impact display) -->
+        <h1 class="heading-hero max-w-5xl text-white mb-4 sm:mb-6">
+          Play Free. Win Rewards. <span class="text-yellow-highlight">Represent Kirinyaga.</span>
+        </h1>
+
+        <!-- Sub-headline (.paragraph-260) -->
+        <p class="text-[15px] sm:text-[18px] lg:text-[20px] leading-[1.6] text-white/80 max-w-3xl mb-8 sm:mb-10 font-normal">
+          The official gaming club of Kirinyaga University, powered by Tribe by Carry1st. Join campus tournaments, jump into casual fun rooms between lectures, and earn points for free airtime, game coins, and vouchers.
+        </p>
+
+        <!-- Call-to-Action Cluster -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+          <a href="/register" class="primary-button-gold w-full sm:w-auto justify-center shadow-[0_0_34px_rgba(251,175,23,0.3)] !py-3.5 sm:!py-4">
+            <span>Join Free</span>
+            <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <a href="#divisions" class="primary-button-outline w-full sm:w-auto justify-center !py-3.5 sm:!py-4">
+            <span>See Games &amp; Prizes</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlapping Showcase Bridge Container (.div-block-2827 negative margin bridge) -->
+  <div class="padding-global relative z-20 -mt-24 sm:-mt-36 lg:-mt-52">
+    <div class="container-large">
+      <div class="rounded-[20px] sm:rounded-[26px] bg-[#131211] border-2 sm:border-[3px] border-[#202835] shadow-[0_28px_70px_rgba(0,0,0,0.75)] overflow-hidden">
+        <!-- Top Visual Showcase Banner with Official Tribe Campus Art & Co-Brand Overlay -->
+        <div class="relative h-[200px] sm:h-[300px] lg:h-[360px] w-full overflow-hidden bg-[#161b25]">
+          <img
+            src="/images/tribedesign.png"
+            alt="Kirinyaga University Esports — Powered by Tribe by Carry1st"
+            class="w-full h-full object-cover object-center opacity-90 scale-[1.01]"
+          />
+          <div
+            class="absolute inset-0"
+            style="background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(19,18,17,0.96) 96%);"
+          >
+          </div>
+
+          <!-- Floating Co-Brand Crest Overlay -->
+          <div class="absolute bottom-3 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-6 flex items-end justify-between gap-3">
+            <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
+              <div class="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-black/85 backdrop-blur-md border border-[#fbaf17] sm:border-2 p-1.5 sm:p-2 flex items-center justify-center shadow-xl shrink-0">
+                <img src="/images/kyu_logo2.svg" alt="KyU Crest" class="w-full h-full object-contain" />
+              </div>
+              <div class="min-w-0">
+                <p class="font-display-impact text-base xs:text-lg sm:text-3xl lg:text-4xl text-white tracking-wide leading-none truncate">
+                  KIRINYAGA UNIVERSITY × TRIBE BY CARRY1ST
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Proof Points 3-Column Dock -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[#202835] bg-[#131211]">
+          {
+            proofPoints.map((point) => (
+              <div class="p-5 sm:p-8 flex flex-col justify-between gap-2 sm:gap-3 hover:bg-white/[0.02] transition-colors">
+                <h2 class="text-lg sm:text-[22px] font-bold text-white">
+                  {point.title}
+                </h2>
+                <p class="text-[14px] sm:text-[15px] leading-[1.6] text-white/80">
+                  {point.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

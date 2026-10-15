@@ -1,0 +1,142 @@
+---
+import RootLayout from '../layouts/RootLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const quickDirectory = [
+  {
+    title: 'Varsity Divisions',
+    desc: 'Explore Tier 1 competitive rosters: eFootball, CODM, and PUBG Mobile.',
+    href: '/#divisions',
+    badge: 'Competitive',
+    color: 'border-[#fbaf17]/40 hover:border-[#fbaf17]',
+  },
+  {
+    title: 'Rewards & CDP',
+    desc: 'Discover Carry1st Discount Points, stipend pools, and student perks.',
+    href: '/#rewards',
+    badge: 'Economy',
+    color: 'border-[#00a1e1]/40 hover:border-[#00a1e1]',
+  },
+  {
+    title: 'Season Calendar',
+    desc: 'Review the 2026–2027 competitive roadmap and campus LAN dates.',
+    href: '/#calendar',
+    badge: 'Schedule',
+    color: 'border-[#22c55e]/40 hover:border-[#22c55e]',
+  },
+  {
+    title: 'Roster Registration',
+    desc: 'Verify your student ID and lock in your competitive division roster seed.',
+    href: '/register',
+    badge: 'Onboarding',
+    color: 'border-[#fbb529]/40 hover:border-[#fbb529]',
+  },
+];
+---
+
+<RootLayout
+  title="404 — SECTOR NOT FOUND | Kirinyaga University Esports · Tribe by Carry1st"
+  description="The requested page or tournament lobby does not exist or has been relocated within the Kirinyaga University Esports arena."
+>
+  <!-- Global Navigation Bar -->
+  <Navbar />
+
+  <main class="flex-1 flex flex-col justify-center">
+    <!-- Top Curved Black Stage (.div-block-2822 archetype) -->
+    <section class="relative pt-16 pb-20 sm:pt-24 sm:pb-28 bg-black border-b border-[#202835]/80 overflow-hidden">
+      <!-- Ambient Radial Lighting -->
+      <div
+        class="pointer-events-none absolute inset-0 opacity-30"
+        style="background: radial-gradient(circle at 50% 10%, rgba(251, 175, 23, 0.25), transparent 60%), radial-gradient(circle at 80% 80%, rgba(0, 161, 225, 0.3), transparent 55%);"
+      >
+      </div>
+
+      <!-- Subtle Cyber Grid Watermark -->
+      <div
+        class="pointer-events-none absolute inset-0 opacity-5"
+        style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"
+      >
+      </div>
+
+      <div class="padding-global relative z-10">
+        <div class="container-large">
+          <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <!-- Glitch / Badge Identifier -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 xs:px-4 xs:py-2 rounded-full bg-white/[0.06] border border-white/10 text-[10px] xs:text-xs sm:text-sm font-mono uppercase tracking-widest text-[#fbaf17] mb-6 shadow-sm">
+              <span class="w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full bg-[#fbaf17] animate-ping"></span>
+              <span>ERR_404 · LOBBY_DISCONNECTED</span>
+            </div>
+
+            <!-- Massive Display 404 Headline -->
+            <div class="relative mb-3">
+              <span class="font-display-impact text-[84px] xs:text-[110px] sm:text-[160px] lg:text-[200px] leading-none tracking-tight text-white select-none">
+                4<span class="text-[#fbaf17]">0</span>4
+              </span>
+            </div>
+
+            <h1 class="heading-section text-white mb-5">
+              Sector <span class="text-yellow-highlight">Not Found</span>
+            </h1>
+
+            <p class="text-[17px] sm:text-[20px] leading-[1.6] text-white/80 max-w-2xl mb-10">
+              The coordinate or tournament bracket you are looking for has been rotated out of the varsity arena, re-seeded, or does not exist.
+            </p>
+
+            <!-- Action Button Cluster -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
+              <a href="/" class="primary-button-gold w-full sm:w-auto justify-center shadow-[0_0_30px_rgba(251,175,23,0.3)]">
+                <span>Return to Campus Hub</span>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </a>
+
+              <a href="/register" class="primary-button-outline w-full sm:w-auto justify-center">
+                <span>Claim Your Roster Spot ↗</span>
+              </a>
+            </div>
+
+            <!-- Quick Jump Varsity Directory (4-Card Grid) -->
+            <div class="w-full pt-10 border-t border-white/10 text-left">
+              <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#7e8a9e] text-center mb-6">
+                Or Navigate Directly To Active Varsity Sections:
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {
+                  quickDirectory.map((item) => (
+                    <a
+                      href={item.href}
+                      class={`p-5 rounded-[20px] bg-[#161b25]/80 border ${item.color} transition-all duration-300 hover:-translate-y-1 hover:bg-[#191f2a] flex flex-col justify-between group block`}
+                    >
+                      <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                          <span class="text-xs font-mono font-semibold text-[#fbaf17] uppercase tracking-wider">
+                            {item.badge}
+                          </span>
+                          <span class="text-white/40 group-hover:text-white transition-colors text-sm">
+                            →
+                          </span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-1.5 group-hover:text-[#fbaf17] transition-colors">
+                          {item.title}
+                        </h2>
+                        <p class="text-xs text-white/70 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Institutional Footer -->
+  <Footer />
+</RootLayout>

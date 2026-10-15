@@ -1,0 +1,160 @@
+---
+import RootLayout from '../layouts/RootLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<RootLayout
+  title="Privacy Policy — Kirinyaga University Esports & Tribe Campus"
+  description="Privacy Policy for Kirinyaga University Esports club and Tribe Campus chapter. Learn how student data, game profiles, and tournament records are handled."
+>
+  <Navbar />
+
+  <main class="flex-1">
+    <!-- Top Header Stage -->
+    <section class="relative pt-12 pb-10 sm:pt-16 sm:pb-14 bg-black border-b border-[#202835]/80 overflow-hidden">
+      <div
+        class="pointer-events-none absolute inset-0 opacity-20"
+        style="background: radial-gradient(circle at 50% 0%, rgba(0, 161, 225, 0.35), transparent 60%), radial-gradient(circle at 85% 60%, rgba(251, 175, 23, 0.2), transparent 50%);"
+      >
+      </div>
+
+      <div class="padding-global relative z-10">
+        <div class="container-large max-w-4xl mx-auto">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-white/70 hover:text-[#fbaf17] transition-colors mb-6 group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+            </svg>
+            <span>Back to Home</span>
+          </a>
+
+          <h1 class="heading-hero text-white mb-4">
+            Privacy <span class="text-yellow-highlight">Policy</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-white/80 leading-relaxed">
+            Last Updated: October 2026. This policy explains what information we collect from Kirinyaga University students, how we use it to organize gaming leagues and issue Carry1st rewards, and how we protect your privacy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Stage -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-[#121110]">
+      <div class="padding-global">
+        <div class="container-large max-w-4xl mx-auto space-y-10 text-white/85 text-[15px] sm:text-[16px] leading-[1.75]">
+          
+          <!-- Summary Box -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-[#191f2a] border border-[#202835] space-y-2">
+            <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#fbaf17] block">
+              Quick Overview (In Plain English)
+            </span>
+            <p class="text-sm text-white/90">
+              We collect only the bare essentials (your name, student registration number, WhatsApp number, and Carry1st email) so you can join match lobbies, claim tournament prize points (CDP), and receive campus gaming announcements. We never sell your data, spam your inbox, or share your private contact information with third-party advertisers.
+            </p>
+          </div>
+
+          <!-- Section 1 -->
+          <div class="space-y-3">
+            <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#fbaf17]"></span>
+              1. Information We Collect
+            </h2>
+            <p>
+              When you register for the KyU Esports Club and Tribe Campus events, we collect:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 text-white/80">
+              <li><strong class="text-white">Identity & Verification:</strong> Full name and student registration number (e.g., CT101/G/XXXXX/XX) to confirm you are an active Kirinyaga University student.</li>
+              <li><strong class="text-white">Contact Details:</strong> Your institutional student email (@students.kyu.ac.ke) and WhatsApp phone number to send match notifications, tournament schedules, and channel invite links.</li>
+              <li><strong class="text-white">Gaming Profiles:</strong> Your chosen competitive title (e.g., eFootball Mobile, CODM, PUBG Mobile, or Fun Rooms) and game handles/in-game IDs (IGNs).</li>
+              <li><strong class="text-white">Reward Account:</strong> The email registered with your Carry1st Shop profile to route Carry1st Discount Points (CDP) and digital prize redemptions.</li>
+            </ul>
+          </div>
+
+          <!-- Section 2 -->
+          <div class="space-y-3">
+            <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#00a1e1]"></span>
+              2. How We Use Your Data
+            </h2>
+            <p>
+              Your data is collected and processed strictly for the following purposes:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 text-white/80">
+              <li>Organizing university tournaments, seasonal leaderboards, and inter-university scrimmages.</li>
+              <li>Routing you into your primary game division's moderated WhatsApp group.</li>
+              <li>Crediting tournament prize earnings and event incentives via Carry1st Discount Points (CDP).</li>
+              <li>Verifying student eligibility for athletic certificates and leadership recognition letters issued with the Directorate of Sports.</li>
+              <li>Preventing smurfing, ringers, and unauthorized multi-accounting in campus tournaments.</li>
+            </ul>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="space-y-3">
+            <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#22c55e]"></span>
+              3. Data Sharing &amp; Third Parties
+            </h2>
+            <p>
+              We treat your information with high confidentiality. Data is only shared under specific operational conditions:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 text-white/80">
+              <li><strong class="text-white">Tribe by Carry1st:</strong> Member counts, tournament participation sheets, and Carry1st email identifiers are synchronized with the Carry1st Tribe Campus database to calculate regional tier allocations and credit points directly to your wallet.</li>
+              <li><strong class="text-white">Kirinyaga University Administration:</strong> Aggregate roster lists and active member tallies may be reviewed by student affairs and the sports directorate to certify official campus club status.</li>
+              <li><strong class="text-white">WhatsApp & Meta Platforms:</strong> By joining division WhatsApp lobbies, group members will see your profile name and phone number as per default WhatsApp group mechanics.</li>
+            </ul>
+            <p class="text-sm text-white/70 italic">
+              We do not sell, rent, or trade student contact information or personal data to outside brokers or commercial advertisers.
+            </p>
+          </div>
+
+          <!-- Section 4 -->
+          <div class="space-y-3">
+            <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#fbaf17]"></span>
+              4. Data Retention &amp; Security
+            </h2>
+            <p>
+              Registration credentials are kept securely in encrypted storage accessible only to designated KyU Tribe campus leaders and verified system administrators. Records are maintained for the active academic year to preserve tournament standings and reward distribution history.
+            </p>
+          </div>
+
+          <!-- Section 5 -->
+          <div class="space-y-3">
+            <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#00a1e1]"></span>
+              5. Your Rights &amp; Data Requests
+            </h2>
+            <p>
+              As a student, you retain full rights over your information:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 text-white/80">
+              <li><strong class="text-white">Review &amp; Correction:</strong> You may verify or request updates to your registered phone number, preferred game, or Carry1st email at any time.</li>
+              <li><strong class="text-white">Roster Removal:</strong> If you graduate, transfer, or wish to opt out, you can request complete removal of your records from the roster database.</li>
+            </ul>
+            <p>
+              To submit a data inquiry or opt-out request, contact us at <a href="mailto:esports@students.kyu.ac.ke" class="text-[#fbaf17] underline">esports@students.kyu.ac.ke</a>.
+            </p>
+          </div>
+
+          <!-- Contact Card -->
+          <div class="p-6 rounded-2xl bg-[#161b25] border border-[#202835] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-1">Have questions about your data?</h3>
+              <p class="text-sm text-white/70">Reach out directly to the KyU Esports Campus Chapter coordinators.</p>
+            </div>
+            <a href="mailto:esports@students.kyu.ac.ke" class="primary-button-gold shrink-0 justify-center">
+              <span>Contact Secretariat</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</RootLayout>

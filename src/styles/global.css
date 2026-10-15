@@ -1,0 +1,658 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Al Gre Sans Nc';
+  src: url('/fonts/AlGreSansNc.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Core Carry1st & Tribe Webflow Design Tokens */
+  --main-dark: #161b25;
+  --main-blue: #00a1e1;
+  --dark-blue: #2c3749;
+  --main-grey: #f3f3f3;
+
+  /* Tribe Community Dark Surfaces */
+  --bg-canvas-obsidian: #121110;
+  --bg-hero-stage: #000000;
+  --bg-card-obsidian: #131211;
+  --bg-elevated-slate: #191f2a;
+
+  /* Tribe & KyU Accent Colors */
+  --accent-tribe-gold: #fbaf17;
+  --accent-hero-yellow: #fbb529;
+  --accent-submit-amber: #fbaf19;
+  --accent-carry1st-blue: #00a1e1;
+  --accent-kyu-emerald: #22c55e;
+
+  /* Border & Divider Tokens */
+  --border-dark-card: #1a1919;
+  --border-slate-card: #202835;
+  --border-subtle-divider: rgba(217, 217, 217, 0.35);
+
+  /* Typography Ink Tokens */
+  --ink-white: #ffffff;
+  --ink-light-white: rgba(255, 255, 255, 0.8);
+  --ink-muted-slate: #7e8a9e;
+  --ink-dark: #161b25;
+
+  /* Corner Radius Tokens from Webflow :root */
+  --round-corner-1: 40px;
+  --round-corner-2: 26px;
+  --round-corner-3: 20px;
+  --round-corner-4: 8px;
+
+  /* Font Stacks */
+  --font-display: 'Al Gre Sans Nc', 'Karantina', 'Barlow Condensed', sans-serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas-obsidian);
+    color: var(--ink-white);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-canvas-obsidian);
+    color: var(--ink-white);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+}
+
+/* ==========================================================================
+   3-Layer Structural Layout System ("How the Site is Printed")
+   <section> -> .padding-global -> .container-large -> .padding-vertical
+   MOBILE-FIRST ARCHITECTURE: Clean base values for phones scaling up via min-width
+   ========================================================================== */
+.padding-global {
+  padding-left: 1rem; /* 16px base mobile padding */
+  padding-right: 1rem;
+}
+
+@media screen and (min-width: 480px) {
+  .padding-global {
+    padding-left: 1.5rem; /* 24px */
+    padding-right: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .padding-global {
+    padding-left: 2.5rem; /* 40px */
+    padding-right: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .padding-global {
+    padding-left: 5rem; /* 80px */
+    padding-right: 5rem;
+  }
+}
+
+.container-large {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.padding-vertical {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.padding-medium {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .padding-medium {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.padding-large {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .padding-large {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+.padding-huge {
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+@media screen and (min-width: 768px) {
+  .padding-huge {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .padding-huge {
+    padding-top: 5.3rem;
+    padding-bottom: 5.3rem;
+  }
+}
+
+.padding-xhuge {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .padding-xhuge {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .padding-xhuge {
+    padding-top: 7.3rem;
+    padding-bottom: 7.3rem;
+  }
+}
+
+/* ==========================================================================
+   Display & Body Typography Classes (Mobile-First Scaled Headings)
+   ========================================================================== */
+.font-display-impact {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.96;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+/* Mobile-first base sizes scaling smoothly to desktop */
+.heading-hero {
+  font-family: var(--font-display);
+  font-size: 2.5rem; /* 40px on 320px screens */
+  line-height: 0.98;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: 480px) {
+  .heading-hero {
+    font-size: 3.25rem; /* 52px */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heading-hero {
+    font-size: 4.25rem; /* 68px */
+    line-height: 0.96;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .heading-hero {
+    font-size: 5.75rem; /* 92px */
+    line-height: 0.95;
+  }
+}
+
+.heading-section {
+  font-family: var(--font-display);
+  font-size: 2.125rem; /* 34px on mobile */
+  line-height: 1.0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: 480px) {
+  .heading-section {
+    font-size: 2.75rem; /* 44px */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heading-section {
+    font-size: 3.5rem; /* 56px */
+    line-height: 0.98;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .heading-section {
+    font-size: 5rem; /* 80px */
+    line-height: 0.96;
+  }
+}
+
+.heading-split {
+  font-family: var(--font-display);
+  font-size: 1.875rem; /* 30px on mobile */
+  line-height: 1.02;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: 480px) {
+  .heading-split {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heading-split {
+    font-size: 2.75rem; /* 44px */
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .heading-split {
+    font-size: 3.5rem; /* 56px */
+    line-height: 0.98;
+  }
+}
+
+.text-yellow-highlight {
+  color: var(--accent-hero-yellow);
+}
+
+.text-tribe-gold {
+  color: var(--accent-tribe-gold);
+}
+
+.text-carry1st-blue {
+  color: var(--accent-carry1st-blue);
+}
+
+/* ==========================================================================
+   Signature Pill Buttons (.nav-button-wrapper, .primary-button-6, .submit-button-2)
+   ========================================================================== */
+.nav-button-wrapper {
+  background-image: linear-gradient(264deg, #ff00e5, #00f0ff);
+  border-radius: 100px;
+  padding: 3px;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-button-wrapper:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.35);
+}
+
+.primary-button-dark {
+  background-color: var(--main-dark);
+  color: #ffffff;
+  border-radius: 100px;
+  padding: 12px 22px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: all 0.35s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 640px) {
+  .primary-button-dark {
+    padding: 13px 28px;
+    font-size: 15px;
+  }
+}
+
+.primary-button-dark:hover {
+  background-color: #ffffff;
+  color: var(--main-dark);
+}
+
+.primary-button-gold {
+  background-color: var(--accent-submit-amber);
+  color: #000000;
+  border-radius: 100px;
+  padding: 13px 24px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media screen and (min-width: 640px) {
+  .primary-button-gold {
+    padding: 16px 38px;
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+.primary-button-gold:hover {
+  background-color: var(--main-blue);
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+.primary-button-blue {
+  background-color: var(--main-blue);
+  color: #ffffff;
+  border-radius: 100px;
+  padding: 13px 24px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media screen and (min-width: 640px) {
+  .primary-button-blue {
+    padding: 16px 38px;
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+.primary-button-blue:hover {
+  background-color: #ffffff;
+  color: var(--main-dark);
+  transform: scale(1.02);
+}
+
+.primary-button-white {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 100px;
+  min-height: 46px;
+  padding: 0 20px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media screen and (min-width: 640px) {
+  .primary-button-white {
+    min-height: 48px;
+    padding: 0 28px;
+    font-size: 15px;
+  }
+}
+
+.primary-button-white:hover {
+  background-color: var(--main-blue);
+  color: #ffffff;
+}
+
+.primary-button-outline {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 100px;
+  padding: 13px 22px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media screen and (min-width: 640px) {
+  .primary-button-outline {
+    padding: 15px 34px;
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+.primary-button-outline:hover {
+  background-color: #ffffff;
+  color: var(--main-dark);
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   Signature Card Archetypes from tribecarry1stsite
+   ========================================================================== */
+
+/* 1. Curved Hero Stage (.div-block-2822) */
+.hero-stage-black {
+  background-color: var(--bg-hero-stage);
+  border-bottom-left-radius: var(--round-corner-1);
+  border-bottom-right-radius: var(--round-corner-1);
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 479px) {
+  .hero-stage-black {
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+  }
+}
+
+/* 2. Frosted Glass Feature Card (.key-feature-wrapper) */
+.glass-feature-card {
+  backdrop-filter: blur(20px);
+  background-image: linear-gradient(313deg, transparent, rgba(255, 255, 255, 0.03));
+  background-color: rgba(25, 31, 42, 0.55);
+  border: 2px solid var(--border-slate-card);
+  border-radius: 20px;
+  padding: 24px 20px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+@media screen and (min-width: 640px) {
+  .glass-feature-card {
+    border-width: 3px;
+    border-radius: var(--round-corner-2);
+    padding: 36px 32px;
+  }
+}
+
+.glass-feature-card:hover {
+  border-color: rgba(0, 161, 225, 0.5);
+  transform: translateY(-3px);
+}
+
+.feature-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-subtle-divider);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* 3. High-Contrast Gold Split Card (.community-2) */
+.split-card-gold {
+  background-color: var(--accent-tribe-gold);
+  color: #000000;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 640px) {
+  .split-card-gold {
+    border-radius: var(--round-corner-2);
+  }
+}
+
+/* 4. Obsidian Split Card (.communituy-3) */
+.split-card-obsidian {
+  background-color: var(--bg-card-obsidian);
+  border: 2px solid var(--border-dark-card);
+  color: #ffffff;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 640px) {
+  .split-card-obsidian {
+    border-width: 3px;
+    border-radius: var(--round-corner-2);
+  }
+}
+
+/* 5. Carry1st Blue Split Banner (.join-section-2.shop) */
+.split-card-blue {
+  background-image: linear-gradient(132deg, #08a3e1, #0a6bd1);
+  color: #ffffff;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 640px) {
+  .split-card-blue {
+    border-radius: var(--round-corner-2);
+  }
+}
+
+/* 6. 3-Column Outlined Division Card (.div-block-2834) */
+.division-card-dark {
+  background-color: var(--bg-card-obsidian);
+  border: 2px solid var(--border-dark-card);
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 640px) {
+  .division-card-dark {
+    border-width: 3px;
+    border-radius: var(--round-corner-2);
+    padding: 38px 30px;
+  }
+}
+
+.division-card-dark:hover {
+  border-color: var(--accent-tribe-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* 7. Dual-Tone 40px Split Ingestion Engine (.contact-component.comm) */
+.registration-shell-white {
+  background-color: #ffffff;
+  color: var(--main-dark);
+  border-radius: var(--round-corner-1);
+  padding: 20px 35px 20px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+@media screen and (max-width: 991px) {
+  .registration-shell-white {
+    padding: 20px;
+    border-radius: 28px;
+  }
+}
+
+.registration-left-dark {
+  background-color: var(--main-dark);
+  color: #ffffff;
+  border-radius: var(--round-corner-2);
+  padding: 42px 38px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 479px) {
+  .registration-left-dark {
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+}
+
+.contact-field-input {
+  background-color: #eceef0;
+  color: var(--main-dark);
+  border: 2px solid transparent;
+  border-radius: var(--round-corner-4);
+  min-height: 48px;
+  height: 48px;
+  padding: 10px 16px;
+  font-size: 16px; /* 16px base prevents unwanted iOS Safari zoom on focus */
+  font-family: var(--font-sans);
+  width: 100%;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .contact-field-input {
+    font-size: 14px;
+  }
+}
+
+.contact-field-input:focus {
+  outline: none;
+  border-color: var(--main-blue);
+  background-color: #ffffff;
+}
+
+.contact-field-input::placeholder {
+  color: #6b778c;
+}
+
+/* 8. FAQ Accordion Item (.accordion-item---brix) */
+.faq-accordion-item {
+  background-color: var(--bg-elevated-slate);
+  border: 2px solid var(--border-slate-card);
+  border-radius: var(--round-corner-3);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.faq-accordion-item[open] {
+  border-color: var(--accent-tribe-gold);
+  background-color: #1d2432;
+}
+
+.faq-accordion-item summary::-webkit-details-marker {
+  display: none;
+}

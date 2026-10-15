@@ -1,0 +1,86 @@
+---
+import RootLayout from '../layouts/RootLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroSection from '../components/HeroSection.astro';
+import InstitutionalPartners from '../components/InstitutionalPartners.astro';
+import AthleteEconomy from '../components/AthleteEconomy.astro';
+import GamesDirectory from '../components/GamesDirectory.astro';
+import SeasonCalendar from '../components/SeasonCalendar.astro';
+import CodeOfConduct from '../components/CodeOfConduct.astro';
+import FaqSection from '../components/FaqSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<RootLayout>
+  <!-- 1. Global Navigation Bar -->
+  <Navbar />
+
+  <main class="flex-1">
+    <!-- 2. Hero Section: Official Varsity Sanction & Live Broadcast Banner -->
+    <HeroSection />
+
+    <!-- 3. Institutional Validation & Partnerships -->
+    <InstitutionalPartners />
+
+    <!-- 4. The Athlete Economy & Reward Model (#rewards) -->
+    <AthleteEconomy />
+
+    <!-- 5. Multi-Tier Games Directory (#divisions) -->
+    <GamesDirectory />
+
+    <!-- 7. 2026–2027 Season & Activity Calendar (#calendar) -->
+    <SeasonCalendar />
+
+    <!-- 8. Varsity Code of Conduct & Sportsmanship (#code-of-conduct) -->
+    <CodeOfConduct />
+
+    <!-- 9. Frequently Asked Questions (#faq) -->
+    <FaqSection />
+  </main>
+
+    <!-- Pre-Footer Callout Banner (.pre-footer-2 archetype) -->
+  <section class="relative">
+    <div class="padding-global">
+      <div class="container-large">
+        <div class="padding-vertical padding-large">
+          <div class="rounded-[26px] bg-[#161b25] border-[3px] border-[#202835] p-8 sm:p-12 lg:p-16 relative overflow-hidden text-center flex flex-col items-center shadow-2xl">
+            <!-- Subtle Background Radial Glow -->
+            <div
+              class="pointer-events-none absolute inset-0 opacity-30"
+              style="background: radial-gradient(circle at 50% 0%, rgba(0, 161, 225, 0.45), transparent 65%), radial-gradient(circle at 50% 100%, rgba(251, 175, 23, 0.25), transparent 60%);"
+            >
+            </div>
+
+            <div class="relative z-10 max-w-3xl flex flex-col items-center">
+              <h2 class="heading-section text-white mb-5">
+                Ready to Represent <span class="text-tribe-gold">Kirinyaga University?</span>
+              </h2>
+              <p class="text-[16px] sm:text-[18px] text-white/80 mb-8 max-w-2xl">
+                Compete under the university flag, earn official departmental seedings, and win Carry1st Discount Points (CDP) in seasonal leagues.
+              </p>
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+                <a href="/register" class="primary-button-blue w-full sm:w-auto justify-center">
+                  <span>Claim Your Roster Spot</span>
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.carry1st.com/shop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="primary-button-outline w-full sm:w-auto justify-center"
+                >
+                  <span>Open Carry1st Shop ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Institutional Footer & Legal Disclosures -->
+  <Footer />
+</RootLayout>

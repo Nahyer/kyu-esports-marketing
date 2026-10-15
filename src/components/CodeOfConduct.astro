@@ -1,0 +1,84 @@
+---
+const governanceStandards = [
+  {
+    number: '01',
+    title: 'Everyone is Welcome',
+    description:
+      'If you play games—whether it is Call of Duty, eFootball, or Candy Crush on your phone—you are a gamer. No gatekeeping, ever.',
+    accent: '#fbaf17',
+    tag: 'TRIBE MANIFESTO',
+  },
+  {
+    number: '02',
+    title: 'Zero Toxicity & Bullying',
+    description:
+      'Harassment, hate speech, and graphic posts mean an instant ban. Respect fellow students in match lobbies and in group chats.',
+    accent: '#ef4444',
+    tag: 'RESPECT MANDATE',
+  },
+  {
+    number: '03',
+    title: 'Pure Fair Play',
+    description:
+      'No cheats, hacks, or unapproved third-party tools. Winners win through pure skill, good sportsmanship, and teamwork.',
+    accent: '#00a1e1',
+    tag: 'FAIR PLAY ONLY',
+  },
+  {
+    number: '04',
+    title: 'Clean WhatsApp Clan Chats',
+    description:
+      'Keep our campus groups focused on gaming, match times, and friendly banter. No spam, unsolicited ads, or political drama.',
+    accent: '#22c55e',
+    tag: 'COMMUNITY CHAT RULES',
+  },
+];
+---
+
+<section id="code-of-conduct" class="relative scroll-mt-24">
+  <div class="padding-global">
+    <div class="container-large">
+      <div class="padding-vertical padding-huge">
+        <!-- Section Header -->
+        <div class="flex flex-col items-start lg:items-center lg:text-center mb-12">
+          <h2 class="heading-section text-white max-w-4xl mb-4">
+            Play Hard. <span class="text-tribe-gold">Stay Respectful.</span>
+          </h2>
+          <p class="text-[17px] sm:text-[19px] leading-[1.6] text-white/80 max-w-3xl">
+            Our club is built for all Kirinyaga students. We keep our community positive, fair, and welcoming for everyone.
+          </p>
+        </div>
+
+        <!-- The 4 Governance Standards (2x2 26px Frosted-Glass Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {
+            governanceStandards.map((std) => (
+              <article class="glass-feature-card flex flex-col justify-between">
+                <div>
+                  <div class="mb-5">
+                    <div
+                      class="w-12 h-12 rounded-xl flex items-center justify-center font-mono text-lg font-bold border"
+                      style={`color: ${std.accent}; border-color: ${std.accent}50; background-color: ${std.accent}15;`}
+                    >
+                      {std.number}
+                    </div>
+                  </div>
+
+                  <h3 class="text-xl sm:text-2xl font-bold text-white">
+                    {std.title}
+                  </h3>
+
+                  <div class="feature-divider" />
+
+                  <p class="text-[15px] sm:text-[16px] leading-[1.65] text-white/85">
+                    {std.description}
+                  </p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

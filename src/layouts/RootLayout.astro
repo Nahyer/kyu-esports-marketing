@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Kirinyaga University Esports — Play Free. Win Rewards. Represent Kirinyaga University.',
+  description = 'Join Kirinyaga University\'s official gaming club powered by Tribe & Carry1st. Compete in eFootball, CODM & PUBG Mobile to win free airtime, COD points, and CDP.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/images/tribelogo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Google Fonts: Karantina & Barlow Condensed (Display Impact) + Poppins (UI & Body) + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Karantina:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#121110] text-white antialiased selection:bg-[#fbaf17] selection:text-black min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>
