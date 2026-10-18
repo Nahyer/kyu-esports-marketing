@@ -21,22 +21,25 @@ export type GameSelection = (typeof ALL_GAMES)[number];
 
 export const GAME_METADATA: Record<
   GameSelection,
-  { icon: string; tag: string; tagColor: string; description: string }
+  { icon: string; tag: string; tagColor: string; description: string; image?: string }
 > = {
   'eFootball Mobile': {
     icon: '⚽',
+    image: '/images/games/efootball-logo.png',
     tag: 'Mobile Football',
     tagColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
     description: 'Connect with KyU eFootball athletes, campus league fixtures, and weekend co-op rooms.',
   },
   'Call of Duty: Mobile': {
     icon: '🎯',
+    image: '/images/games/codm-logo.png',
     tag: 'Shooter / BR',
     tagColor: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
     description: 'Jump into weekly clan wars, 5v5 scrims, Battle Royale squads, and CDP prize lobbies.',
   },
   'PUBG Mobile': {
     icon: '🪂',
+    image: '/images/games/pubgm-logo.png',
     tag: 'Battle Royale',
     tagColor: 'bg-amber-500/10 text-amber-600 border-amber-500/20',
     description: 'Coordinate squad drops, custom room scrims, and campus chicken dinner tournaments.',
@@ -55,12 +58,14 @@ export const GAME_METADATA: Record<
   },
   'EA Sports FC (EAFC)': {
     icon: '🎮',
+    image: '/images/games/fc-mobile-badge.webp',
     tag: 'Console / PC',
     tagColor: 'bg-blue-500/10 text-blue-600 border-blue-500/20',
     description: 'On-campus LAN bracket seedings, console friendlies, and competitive 1v1 showdowns.',
   },
   'Free Fire Max': {
     icon: '🔥',
+    image: '/images/games/freefire-badge.png',
     tag: 'Battle Royale',
     tagColor: 'bg-orange-500/10 text-orange-600 border-orange-500/20',
     description: 'Clash Squad tactics, weekly survival tournaments, and division prize pool updates.',
@@ -79,6 +84,7 @@ export const GAME_METADATA: Record<
   },
   'Chess Online': {
     icon: '♟️',
+    image: '/images/games/chess-badge.png',
     tag: 'Strategy',
     tagColor: 'bg-purple-500/10 text-purple-600 border-purple-500/20',
     description: 'Blitz & rapid campus brackets, opening strategy discussions, and inter-faculty matches.',
@@ -129,10 +135,10 @@ interface RegistrationApiResponse {
   wa_status_link?: string;
 }
 
-// Configurable backend URL with local fallback
+// Configurable backend URL with live production fallback
 const BACKEND_API_URL =
   (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_API_URL) ||
-  'http://127.0.0.1:8000';
+  'https://kyu-esports-api-d0a8e4fnd5gcg7gt.northeurope-01.azurewebsites.net';
 
 // Cloudflare Turnstile Public Site Key (Defaults to Cloudflare's official testing key if not set)
 // Cloudflare Always-Passes Testing Key: '1x00000000000000000000AA'
@@ -844,8 +850,16 @@ export default function RegistrationEngine() {
                   aria-expanded={gameDropdownOpen}
                 >
                   <div className="flex items-center gap-3 min-w-0 pr-2">
-                    <span className="w-9 h-9 rounded-lg bg-white shadow-xs border border-slate-200/80 flex items-center justify-center text-lg shrink-0">
-                      {GAME_METADATA[formData.primaryTitle]?.icon || '🎮'}
+                    <span className="w-9 h-9 rounded-lg bg-white shadow-xs border border-slate-200/80 flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                      {GAME_METADATA[formData.primaryTitle]?.image ? (
+                        <img
+                          src={GAME_METADATA[formData.primaryTitle]?.image}
+                          alt=""
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-lg">{GAME_METADATA[formData.primaryTitle]?.icon || '🎮'}</span>
+                      )}
                     </span>
                     <div className="min-w-0">
                       <div className="text-[14px] sm:text-[15px] font-bold text-[#161b25] truncate">
@@ -902,8 +916,16 @@ export default function RegistrationEngine() {
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
-                              <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center text-base shrink-0">
-                                {meta?.icon || '🎮'}
+                              <span className="w-8 h-8 rounded-lg bg-white border border-slate-200 shadow-xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                                {meta?.image ? (
+                                  <img
+                                    src={meta.image}
+                                    alt=""
+                                    className="w-full h-full object-contain"
+                                  />
+                                ) : (
+                                  <span className="text-base">{meta?.icon || '🎮'}</span>
+                                )}
                               </span>
                               <div className="min-w-0">
                                 <div className={`text-[13px] font-bold truncate ${

@@ -32,6 +32,7 @@ const tier1Divisions = [
   {
     id: 'efootball',
     title: 'eFootball Mobile',
+    logo: '/images/games/efootball-logo.png',
     formatTag: '1v1 LADDER',
     discipline: '1v1 Football Matches on Mobile.',
     format: 'Weekly matches, faculty knockouts, and campus tournament finals.',
@@ -41,6 +42,7 @@ const tier1Divisions = [
   {
     id: 'codm',
     title: 'Call of Duty: Mobile (CODM)',
+    logo: '/images/games/codm-logo.png',
     formatTag: '5v5 SEARCH & DESTROY',
     discipline: '5v5 Tactical FPS on Mobile.',
     format: 'Squad matches and free-agent draft pools for solo players.',
@@ -50,6 +52,7 @@ const tier1Divisions = [
   {
     id: 'pubgm',
     title: 'PUBG Mobile (PUBG-M)',
+    logo: '/images/games/pubgm-logo.png',
     formatTag: 'SQUAD BATTLE ROYALE',
     discipline: '4-Player Battle Royale.',
     format: 'Custom campus lobbies, survival ranking, and inter-university scrims.',
@@ -59,11 +62,11 @@ const tier1Divisions = [
 ];
 
 const tier2Titles = [
-  'EA Sports FC Mobile',
-  'Free Fire',
-  'Mobile Legends: Bang Bang',
-  'Ludo King',
-  'Chess.com',
+  { name: 'EA Sports FC Mobile', badge: '/images/games/fc-mobile-badge.webp' },
+  { name: 'Free Fire', badge: '/images/games/freefire-badge.png' },
+  { name: 'Mobile Legends: Bang Bang', badge: '/images/games/mlbb-badge.png' },
+  { name: 'Ludo King', badge: '/images/games/ludo-badge.png' },
+  { name: 'Chess.com', badge: '/images/games/chess-badge.png' },
 ];
 
 const pitchedCandidates = [
@@ -133,10 +136,22 @@ const pitchedCandidates = [
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 mb-12">
           {
             tier1Divisions.map((div) => (
-              <article class="division-card-dark group">
+              <article class="division-card-dark group flex flex-col justify-between">
                 <div>
-                  <div class="font-mono text-xs text-[#7e8a9e] tracking-wider uppercase mb-2">
-                    {div.formatTag}
+                  <div class="flex items-center justify-between gap-4 mb-3">
+                    <span class="font-mono text-xs text-[#7e8a9e] tracking-wider uppercase">
+                      {div.formatTag}
+                    </span>
+                    {div.logo && (
+                      <div class="h-8 max-w-[110px] flex items-center justify-end">
+                        <img
+                          src={div.logo}
+                          alt={`${div.title} logo`}
+                          class="max-h-full max-w-full object-contain filter drop-shadow opacity-85 group-hover:opacity-100 transition-opacity"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <!-- Game Title -->
@@ -216,9 +231,17 @@ const pitchedCandidates = [
                 </span>
                 <div class="flex flex-wrap gap-2 sm:gap-2.5 mb-6">
                   {
-                    tier2Titles.map((title) => (
-                      <span class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-[#191f2a] border border-[#202835] text-xs sm:text-sm font-medium text-white">
-                        {title}
+                    tier2Titles.map((game) => (
+                      <span class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-[#191f2a] border border-[#202835] text-xs sm:text-sm font-medium text-white hover:border-[#00a1e1]/50 transition-colors">
+                        {game.badge && (
+                          <img
+                            src={game.badge}
+                            alt=""
+                            class="w-4 h-4 sm:w-5 sm:h-5 object-contain rounded"
+                            loading="lazy"
+                          />
+                        )}
+                        <span>{game.name}</span>
                       </span>
                     ))
                   }
