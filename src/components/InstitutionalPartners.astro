@@ -1,22 +1,22 @@
 ---
-const endorsementModules = [
+const studentPerks = [
   {
-    title: 'Directorate of Sports & Student Welfare',
+    title: 'Free Campus Matches & LANs',
     description:
-      'Recognized as a varsity sports code. Eligible for official sports documentation, faculty leagues, and university representation.',
-    iconType: 'kyu',
+      'Compete in weekly online rooms and live campus game nights. Zero entry fees, zero barrier to play.',
+    iconType: 'gaming',
   },
   {
-    title: 'Tribe by Carry1st',
+    title: 'Win Real Airtime & Game Coins',
     description:
-      'Integrated into the African gaming ecosystem, featuring structured competition frameworks and verified reward distributions.',
-    iconType: 'tribe',
+      'Earn points every match. Cash them out instantly on the Carry1st Shop for Safaricom/Airtel airtime, data bundles, and CP.',
+    iconType: 'rewards',
   },
   {
-    title: 'Institutional Registry',
+    title: 'Represent KyU Across Kenya',
     description:
-      'Connected to verified student credentials (@students.kyu.ac.ke) to ensure transparent roster selection.',
-    iconType: 'registry',
+      'Squad up with campus teammates to challenge rival universities in official inter-campus invitationals and split finals.',
+    iconType: 'varsity',
   },
 ];
 ---
@@ -25,56 +25,51 @@ const endorsementModules = [
   <div class="padding-global">
     <div class="container-large">
       <div class="padding-vertical padding-huge">
-        <!-- Partner Strip Banner Title (.home-partners_section style) -->
+        <!-- Section Header -->
         <div class="flex flex-col items-center text-center mb-10 sm:mb-12">
-          <h2 class="font-display-impact text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-white max-w-4xl tracking-wider leading-snug">
-            SANCTIONED BY UNIVERSITY ADMINISTRATION · <span class="text-[#fbaf17]">POWERED BY AFRICA'S LARGEST GAMING NETWORK</span>
+          <p class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#fbaf17] mb-2">
+            WHY STUDENTS PLAY
+          </p>
+          <h2 class="font-display-impact text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-white max-w-3xl tracking-wider leading-snug">
+            Built by Gamers, <span class="text-[#fbaf17]">Recognized on Campus.</span>
           </h2>
         </div>
 
-        <!-- 3-Column Frosted Glass Endorsement Modules (.key-feature-wrapper archetype) -->
+        <!-- 3-Column Perk Cards -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {
-            endorsementModules.map((mod) => (
+            studentPerks.map((perk) => (
               <article class="glass-feature-card flex flex-col justify-between">
                 <div>
                   <div class="mb-5 sm:mb-6">
-                    <!-- 55x55px rounded-10px icon badge -->
                     <div class="w-[50px] h-[50px] sm:w-[55px] sm:h-[55px] rounded-[12px] bg-gradient-to-br from-[#07a3e1] to-[#0a60cd] p-2 sm:p-2.5 flex items-center justify-center shadow-lg shrink-0">
-                      {mod.iconType === 'kyu' && (
-                        <img
-                          src="/images/kyu_logo2.svg"
-                          alt="Kirinyaga University Directorate of Sports"
-                          class="w-full h-full object-contain"
-                        />
-                      )}
-                      {mod.iconType === 'tribe' && (
-                        <img
-                          src="/images/tribelogo.svg"
-                          alt="Tribe by Carry1st"
-                          class="w-full h-full object-contain"
-                        />
-                      )}
-                      {mod.iconType === 'registry' && (
+                      {perk.iconType === 'gaming' && (
                         <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                          />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
+                      {perk.iconType === 'rewards' && (
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
+                      {perk.iconType === 'varsity' && (
+                        <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                         </svg>
                       )}
                     </div>
                   </div>
 
                   <h3 class="text-lg sm:text-[22px] font-bold text-white leading-snug">
-                    {mod.title}
+                    {perk.title}
                   </h3>
 
                   <div class="feature-divider" />
 
                   <p class="text-[15px] leading-[1.65] text-white/80">
-                    {mod.description}
+                    {perk.description}
                   </p>
                 </div>
               </article>

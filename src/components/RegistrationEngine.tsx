@@ -262,6 +262,10 @@ export default function RegistrationEngine() {
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
   const turnstileWidgetIdRef = useRef<string | null>(null);
 
+  const step1CardRef = useRef<HTMLDivElement | null>(null);
+  const [pulseButton, setPulseButton] = useState(false);
+  const pulseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const [formData, setFormData] = useState<FormDataState>({
     fullName: '',
     regNumber: '',
@@ -493,6 +497,23 @@ export default function RegistrationEngine() {
       setErrorMessage('Please complete all required varsity verification fields.');
       return;
     }
+    if (!step1Clicked) {
+      setErrorMessage('Please open and create your free Carry1st account in Step 1 first so your rewards wallet is connected.');
+      setPulseButton(true);
+      if (pulseTimeoutRef.current) clearTimeout(pulseTimeoutRef.current);
+      pulseTimeoutRef.current = setTimeout(() => {
+        setPulseButton(false);
+      }, 4000);
+
+      if (step1CardRef.current) {
+        // Calculate offset so sticky navbar doesn't cover top of Step 1 on mobile & desktop
+        const rect = step1CardRef.current.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetY = rect.top + scrollTop - 100;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+      }
+      return;
+    }
     if (!formData.agreedToMandate) {
       setErrorMessage(
         'Please confirm the Tribe Campus database & Directorate of Sports agreement checkbox.'
@@ -558,172 +579,84 @@ export default function RegistrationEngine() {
     apiResponse?.wa_status_link || 'https://wa.me/254710908080?text=%21status';
 
   return (
-    <div className="registration-shell-white">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-        {/* LEFT PANEL: Dark Navy-Slate (#161b25) Card */}
-        <div className="lg:col-span-5 registration-left-dark flex flex-col justify-between">
-          {/* Subtle Topographic/Geometric Watermark */}
-          <div
-            className="pointer-events-none absolute inset-0 opacity-20"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle at 10% 90%, rgba(0, 161, 225, 0.35), transparent 55%), radial-gradient(circle at 90% 10%, rgba(251, 175, 23, 0.25), transparent 50%)',
-            }}
-          />
-
-          <div className="relative z-10">
-            {/* Desktop Headline & Subhead (Hidden on mobile to avoid screen clutter) */}
-            <div className="hidden lg:block">
-              <h3 className="heading-split text-white mb-4">
-                JOIN THE CLUB IN <span className="text-[#fbaf17]">60 SECONDS</span>
-              </h3>
-
-              <p className="text-[15px] sm:text-[16px] leading-[1.65] text-white/90 font-medium mb-6">
-                100% free registration for all Kirinyaga University students. Set up your Carry1st rewards profile, tell us what game you play, and unlock your official WhatsApp invite.
-              </p>
-            </div>
-
-            {/* Mobile-Friendly Compact Header */}
-            <div className="block lg:hidden mb-4">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#fbaf17]">
-                Quick 3-Step Process
-              </span>
-            </div>
-
-            {/* Connected Vertical Timeline / Process Roadmap */}
-            <div className="relative pl-6 space-y-6 before:absolute before:left-[11px] before:top-2.5 before:bottom-2.5 before:w-[2px] before:bg-gradient-to-b before:from-[#fbaf17] via-[#00a1e1] to-[#22c55e]/40 select-none pointer-events-none">
-              {/* Step 1 */}
-              <div className="relative flex items-start gap-4">
-                <span className="absolute -left-[30px] top-0.5 w-[22px] h-[22px] rounded-full bg-[#161b25] border-2 border-[#fbaf17] text-[#fbaf17] font-mono text-[10px] font-bold flex items-center justify-center shadow-sm">
-                  1
-                </span>
-                <div>
-                  <h4 className="text-[14px] font-bold text-white tracking-wide">
-                    Carry1st Rewards Profile
-                  </h4>
-                  <p className="text-[12px] text-white/70 leading-relaxed mt-0.5">
-                    Set up your free account to receive tournament prize payouts &amp; CDP points.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="relative flex items-start gap-4">
-                <span className="absolute -left-[30px] top-0.5 w-[22px] h-[22px] rounded-full bg-[#161b25] border-2 border-[#00a1e1] text-[#00a1e1] font-mono text-[10px] font-bold flex items-center justify-center shadow-sm">
-                  2
-                </span>
-                <div>
-                  <h4 className="text-[14px] font-bold text-white tracking-wide">
-                    Student Verification
-                  </h4>
-                  <p className="text-[12px] text-white/70 leading-relaxed mt-0.5">
-                    Enter your KyU student reg number and pick your primary game title.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="relative flex items-start gap-4">
-                <span className="absolute -left-[30px] top-0.5 w-[22px] h-[22px] rounded-full bg-[#161b25] border-2 border-[#22c55e] text-[#22c55e] font-mono text-[10px] font-bold flex items-center justify-center shadow-sm">
-                  3
-                </span>
-                <div>
-                  <h4 className="text-[14px] font-bold text-white tracking-wide">
-                    WhatsApp Access
-                  </h4>
-                  <p className="text-[12px] text-white/70 leading-relaxed mt-0.5">
-                    Get instantly routed to your game's verified WhatsApp division lobby upon submit.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative z-10 pt-8 mt-8 border-t border-white/10 flex items-center gap-3">
-            <img
-              src="/images/kyu_logo2.svg"
-              alt="Kirinyaga University"
-              className="h-9 w-auto object-contain"
-            />
-            <span className="w-[1px] h-6 bg-white/20"></span>
-            <img
-              src="/images/tribelogo.svg"
-              alt="Tribe by Carry1st"
-              className="h-9 w-auto object-contain"
-            />
-            <div className="text-[11px] text-white/60 leading-tight ml-1">
-              <span className="block text-white font-bold">Official Campus Chapter</span>
-              <span>Directorate of Sports &amp; Welfare</span>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT PANEL: Crisp White Surface for Step 1, Step 2 & Step 3 */}
-        <div className="lg:col-span-7 flex flex-col justify-center py-2 sm:px-2">
+    <div className="registration-shell-white max-w-4xl mx-auto">
+      {/* Main Content Area */}
+      <div className="w-full">
+        <div className="flex flex-col justify-center">
           {!submitted ? (
             <div className="space-y-6">
-              {/* STEP 1: FREE CARRY1ST ACCOUNT CARD (Carry1st Gradient Design) */}
-              <div className="relative overflow-hidden rounded-[22px] bg-gradient-to-br from-[#07a3e1] via-[#0957b8] to-[#06244f] text-white p-5 sm:p-6 shadow-xl border-2 border-white/20">
+              {/* Rewards Wallet Connection Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg sm:text-xl font-bold text-[#161b25] tracking-tight">
+                  Rewards Wallet Connection
+                </h3>
+                {step1Clicked && (
+                  <span className="text-[11px] sm:text-xs font-mono text-emerald-700 bg-emerald-50 border border-emerald-300 px-2.5 py-1 rounded-full font-bold">
+                    {activePopupOpen ? 'COMPANION OPEN' : 'OPENED ✓'}
+                  </span>
+                )}
+              </div>
+
+              {/* STEP 1: FREE CARRY1ST ACCOUNT CARD */}
+              <div
+                ref={step1CardRef}
+                className="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-[#07a3e1] via-[#0957b8] to-[#06244f] text-white p-5 sm:p-6 shadow-xl border-2 border-white/20"
+              >
                 {/* Subtle Geometric Circle Watermark */}
                 <div className="pointer-events-none absolute -right-8 -bottom-8 w-36 h-36 rounded-full border-[18px] border-white/10" />
 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-3 mb-2">
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                      Step 1: Create Carry1st Account
-                    </h3>
-                    {step1Clicked && (
-                      <span className="text-[11px] sm:text-xs font-mono text-emerald-300 bg-black/40 border border-emerald-400/50 px-2.5 py-1 rounded-full font-bold shrink-0">
-                        {activePopupOpen ? 'COMPANION OPEN' : 'OPENED ✓'}
-                      </span>
-                    )}
+                <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="max-w-md">
+                    <h4 className="text-base sm:text-lg font-bold text-white mb-1">
+                      Connect Rewards Wallet
+                    </h4>
+                    <p className="text-xs sm:text-sm text-white/85 leading-snug">
+                      Prizes and CDP points are deposited directly into your Carry1st account.
+                    </p>
                   </div>
 
-                  <h4 className="text-base sm:text-lg font-semibold text-white/95 mb-1.5">
-                    Set Up Your Carry1st Rewards Profile
-                  </h4>
-                  <p className="text-xs sm:text-sm text-white/85 leading-relaxed mb-4">
-                    Tournament rewards &amp; CDP reward pools require an active Carry1st profile. This is where your tournament rewards, airtime vouchers, and CDP points get deposited.
-                  </p>
-
-                  <a
-                    href={CARRY1ST_AFFILIATE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={handleOpenCarry1st}
-                    className="primary-button-gold w-full sm:w-auto justify-center !py-3 !px-6 !text-sm font-bold shadow-lg inline-flex items-center gap-2"
-                  >
-                    <span>Launch Carry1st ↗</span>
-                  </a>
-
-                  {/* Active Companion Popup Banner */}
-                  {activePopupOpen && (
-                    <div className="mt-3.5 p-3 rounded-xl bg-black/40 border border-emerald-400/50 text-emerald-300 text-xs flex items-center justify-between gap-2 animate-pulse">
-                      <div className="flex items-center gap-2 truncate">
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
-                        <span className="truncate text-xs font-medium">Carry1st window active...</span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={handleManualDone}
-                        className="shrink-0 px-3 py-1.5 bg-[#fbaf17] hover:bg-white text-black font-bold rounded-full text-xs transition cursor-pointer"
-                      >
-                        I'm Done &rarr;
-                      </button>
-                    </div>
-                  )}
+                  <div className="shrink-0">
+                    <a
+                      href={CARRY1ST_AFFILIATE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        setPulseButton(false);
+                        handleOpenCarry1st();
+                      }}
+                      className={`primary-button-gold w-full sm:w-auto justify-center !py-3 !px-6 !text-sm font-bold shadow-lg inline-flex items-center gap-2 transition-all active:scale-[0.97] ${
+                        pulseButton ? 'ring-4 ring-[#fbaf17]/60 shadow-[0_0_25px_rgba(251,175,23,0.7)] animate-pulse' : ''
+                      }`}
+                    >
+                      <span>Launch Carry1st ↗</span>
+                    </a>
+                  </div>
                 </div>
+
+                {/* Active Companion Popup Banner */}
+                {activePopupOpen && (
+                  <div className="mt-3.5 p-3 rounded-xl bg-black/40 border border-emerald-400/50 text-emerald-300 text-xs flex items-center justify-between gap-2 animate-pulse">
+                    <div className="flex items-center gap-2 truncate">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+                      <span className="truncate text-xs font-medium">Carry1st window active...</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleManualDone}
+                      className="shrink-0 px-3 py-1.5 bg-[#fbaf17] hover:bg-white text-black font-bold rounded-full text-xs transition active:scale-[0.97] cursor-pointer"
+                    >
+                      I'm Done &rarr;
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* STEP 2: FORM */}
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                <div className="border-b border-slate-200 pb-4">
-                  <h4 className="text-2xl sm:text-3xl font-bold text-[#161b25]">
-                    Step 2: Quick Student Roster Form
+                <div className="border-b border-slate-200 pb-3">
+                  <h4 className="text-lg sm:text-xl font-bold text-[#161b25] tracking-tight">
+                    Student Verification Details
                   </h4>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Takes less than a minute. No gaming history or test needed.
-                  </p>
                 </div>
 
                 {errorMessage && (
@@ -746,6 +679,8 @@ export default function RegistrationEngine() {
                     name="fullName"
                     type="text"
                     required
+                    autoComplete="name"
+                    autoCapitalize="words"
                     placeholder="e.g., Brian Mwangi"
                     value={formData.fullName}
                     onChange={handleInputChange}
@@ -765,6 +700,9 @@ export default function RegistrationEngine() {
                     name="regNumber"
                     type="text"
                     required
+                    autoCapitalize="characters"
+                    autoCorrect="off"
+                    spellCheck={false}
                     placeholder="e.g., CT101/G/XXXXX/XX"
                     value={formData.regNumber}
                     onChange={handleInputChange}
@@ -786,6 +724,8 @@ export default function RegistrationEngine() {
                     id="whatsappNumber"
                     name="whatsappNumber"
                     type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
                     required
                     placeholder="e.g., 0712345678 or +254..."
                     value={formData.whatsappNumber}
@@ -808,6 +748,9 @@ export default function RegistrationEngine() {
                     id="carry1stEmail"
                     name="carry1stEmail"
                     type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    autoCapitalize="none"
                     required
                     placeholder="Email used in Step 1 (e.g., name@gmail.com)"
                     value={formData.carry1stEmail}

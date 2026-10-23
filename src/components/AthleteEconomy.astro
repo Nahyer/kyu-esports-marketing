@@ -1,24 +1,17 @@
 ---
-const redemptionItems = [
-  'Google Play Credits',
-  'Call of Duty CP',
-  'eFootball Coins',
-  'Mobile Airtime',
-  'Data Bundles',
-];
 ---
 
-<section id="rewards" class="relative scroll-mt-24">
+<section id="reach" class="relative scroll-mt-24">
   <div class="padding-global">
     <div class="container-large">
       <div class="padding-vertical padding-huge">
         <!-- Section Header -->
         <div class="flex flex-col items-start lg:items-center lg:text-center mb-14">
           <h2 class="heading-section text-white max-w-4xl mb-4">
-            Play Games. <span class="text-tribe-gold">Get Rewarded.</span>
+            Our Reach &amp; <span class="text-tribe-gold">Player Rewards</span>
           </h2>
           <p class="text-[17px] sm:text-[19px] leading-[1.6] text-white/80 max-w-3xl">
-            Win campus matches, complete fun challenges, and earn Carry1st Discount Points (CDP) to redeem for actual goodies you use every day.
+            Backed by Africa's 400,000+ Tribe gaming network. Kirinyaga University is officially at <strong>Premier Campus Tier (264 verified members)</strong>—join us to push KyU to the top Emerald tier!
           </p>
         </div>
 
@@ -33,9 +26,16 @@ const redemptionItems = [
           <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             <!-- Left Text Column (7 cols) -->
             <div class="lg:col-span-7 flex flex-col justify-between">
-              <h3 class="heading-split text-black mb-6">
-                What is CDP &amp; How Do You Spend It?
-              </h3>
+              <div class="flex items-center gap-3.5 mb-5">
+                <img
+                  src="/images/carry1st/Coin-Final 1.webp"
+                  alt="Carry1st Discount Points Coin"
+                  class="w-12 h-12 sm:w-14 sm:h-14 object-contain shrink-0 drop-shadow-md"
+                />
+                <h3 class="heading-split text-black leading-tight">
+                  What is CDP &amp; How Do You Spend It?
+                </h3>
+              </div>
 
               <div class="space-y-4 text-black/90 text-[15px] sm:text-[17px] leading-[1.6]">
                 <p>
@@ -45,69 +45,55 @@ const redemptionItems = [
                 <p>
                   <strong class="font-bold text-black">Instant Redemptions:</strong> Points can be redeemed instantly for <strong class="font-bold text-black">Safaricom &amp; Airtel airtime, data bundles, Call of Duty CP, eFootball coins, Free Fire diamonds, and Google Play vouchers</strong>.
                 </p>
-
-                <p>
-                  <strong class="font-bold text-black">Campus Prize Pools:</strong> Carry1st provides our campus with up to <span class="font-mono font-bold underline">259,000 CDP</span> every month for tournament prizes, friendly matches, and community events.
-                </p>
               </div>
             </div>
 
             <!-- Right Interactive/Visual Telemetry Panel (5 cols, Dark #121110 card inside Gold card) -->
-            <div class="lg:col-span-5 bg-[#121110] text-white rounded-[18px] sm:rounded-[22px] p-4 sm:p-7 lg:p-8 border-[2px] sm:border-[3px] border-black shadow-2xl flex flex-col justify-between gap-6">
+            <div class="lg:col-span-5 bg-[#121110] text-white rounded-[18px] sm:rounded-[22px] p-5 sm:p-7 lg:p-8 border-[2px] sm:border-[3px] border-black shadow-2xl flex flex-col justify-between gap-6">
               <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <span class="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#7e8a9e]">
-                    MONTHLY CAMPUS ALLOCATION
+                <div class="mb-4">
+                  <span class="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#7e8a9e] block">
+                    CAMPUS MEMBERSHIP &amp; TIER
                   </span>
                 </div>
 
                 <div class="flex flex-wrap xs:flex-nowrap items-baseline justify-between gap-2 mb-4">
                   <div>
-                    <span class="text-[11px] sm:text-xs text-[#7e8a9e] block">Base Tier</span>
-                    <span class="font-mono text-lg sm:text-2xl font-bold text-white">52,000 CDP</span>
+                    <span class="text-[11px] sm:text-xs text-[#7e8a9e] block">Verified Members</span>
+                    <span class="font-mono text-2xl sm:text-4xl font-extrabold text-[#fbaf17]">264</span>
+                    <span class="text-xs font-semibold text-white/70 block mt-0.5">Premier Tier</span>
                   </div>
                   <div class="text-left xs:text-right">
-                    <span class="text-[11px] sm:text-xs text-[#fbaf17] block">Emerald Tier Max</span>
-                    <span class="font-mono text-xl sm:text-3xl font-bold text-[#fbaf17]">259,000 CDP</span>
+                    <span class="text-[11px] sm:text-xs text-[#22c55e] block">Target Goal</span>
+                    <span class="font-mono text-2xl sm:text-4xl font-extrabold text-[#22c55e]">800+</span>
+                    <span class="text-xs font-semibold text-emerald-400 block mt-0.5">Emerald Tier</span>
                   </div>
                 </div>
 
-                <!-- Visual Tier Scaling Bar -->
-                <div class="w-full h-3.5 rounded-full bg-[#191f2a] p-0.5 overflow-hidden border border-[#202835] mb-2">
+                <!-- Multi-Step Tier Progress Bar -->
+                <div class="w-full h-3 rounded-full bg-[#191f2a] p-0.5 overflow-hidden border border-[#202835] mb-2.5">
                   <div
-                    class="h-full rounded-full w-4/5"
-                    style="background: linear-gradient(90deg, #00a1e1 0%, #fbaf17 65%, #22c55e 100%);"
-                  >
-                  </div>
+                    class="h-full rounded-full w-[45%]"
+                    style="background: linear-gradient(90deg, #00a1e1 0%, #fbaf17 60%, #22c55e 100%);"
+                  ></div>
                 </div>
-                <div class="flex justify-between text-[9.5px] xs:text-[11px] font-mono text-[#7e8a9e] tracking-tight">
-                  <span>BASE (52K)</span>
-                  <span>CONF</span>
-                  <span>PREMIER</span>
-                  <span class="text-[#22c55e] font-semibold">EMERALD (259K)</span>
+                <div class="flex justify-between text-[9px] xs:text-[10.5px] font-mono text-[#7e8a9e] tracking-tight uppercase mb-4">
+                  <span>Base</span>
+                  <span>Conf</span>
+                  <span class="text-[#fbaf17] font-bold">Premier</span>
+                  <span class="text-[#22c55e] font-semibold">Emerald</span>
                 </div>
-              </div>
 
-              <div class="border-t border-white/10 pt-5">
-                <span class="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#7e8a9e] block mb-3">
-                  INSTANT CARRY1ST SHOP REDEMPTIONS
-                </span>
-                <div class="flex flex-wrap gap-1.5 sm:gap-2">
-                  {
-                    redemptionItems.map((item) => (
-                      <span class="text-[11px] sm:text-xs font-medium bg-[#191f2a] border border-[#202835] text-white/90 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full">
-                        {item}
-                      </span>
-                    ))
-                  }
-                </div>
+                <p class="text-xs sm:text-[13px] text-white/80 leading-relaxed">
+                  Kirinyaga is now in <strong class="text-[#fbaf17] font-semibold">Premier Tier</strong> with 264 members. More members help us reach <strong class="text-[#22c55e] font-semibold">Emerald Tier</strong> to unlock bigger campus tournaments, LAN hangouts, and free gaming gear.
+                </p>
               </div>
 
               <a
                 href="/register"
                 class="primary-button-white w-full justify-center !py-3 sm:!py-3.5 text-sm sm:text-base text-center"
               >
-                <span>Get Started</span>
+                <span>Help Us Reach Emerald Tier</span>
                 <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -141,16 +127,16 @@ const redemptionItems = [
           <article class="split-card-obsidian p-5 sm:p-8 lg:p-11 flex flex-col justify-between">
             <div>
               <h3 class="heading-split text-[#fbaf17] mb-6">
-                Inter-University Pride &amp; Tournaments
+                Inter-Campus Rivalries &amp; Scrims
               </h3>
 
               <div class="space-y-4 text-[16px] leading-[1.65] text-white/80">
                 <p>
-                  <strong class="text-white font-semibold">Represent Kirinyaga:</strong> Challenge other universities across Kenya in scheduled weekend scrimmages and regional tournaments.
+                  <strong class="text-white font-semibold">National Bragging Rights:</strong> Go head-to-head against rival university gaming chapters across Kenya (UoN, KU, JKUAT) in scheduled weekend invitationals.
                 </p>
 
                 <p>
-                  <strong class="text-white font-semibold">Open to Everyone:</strong> From solo warriors looking for squad-mates to ready-made teams, anyone can enter the trials and claim university bragging rights.
+                  <strong class="text-white font-semibold">Solo or Squad:</strong> Free agent? We draft you into active teams during trials so no one gets left on the sidelines.
                 </p>
               </div>
             </div>

@@ -3,11 +3,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isRegisterPage = currentPath === '/register';
 
 const rawNavLinks = [
-  { label: 'Divisions', hash: 'divisions' },
-  { label: 'Rewards & CDP', hash: 'rewards' },
-  { label: 'Calendar', hash: 'calendar' },
-  { label: 'Code of Conduct', hash: 'code-of-conduct' },
-  { label: 'FAQ', hash: 'faq' },
+  { label: 'Games', hash: 'games' },
+  { label: 'Rewards & Reach', hash: 'reach' },
+  { label: 'Events', hash: 'events' },
+  { label: 'Community', hash: 'community' },
 ];
 
 const navLinks = rawNavLinks.map((link) => ({
@@ -86,7 +85,7 @@ const navLinks = rawNavLinks.map((link) => ({
           !isRegisterPage && (
             <div class="!hidden lg:!inline-flex nav-button-wrapper">
               <a href="/register" class="primary-button-dark">
-                <span>Join Free</span>
+                <span>Join Us</span>
                 <svg class="w-4 h-4 text-[#fbaf17]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -132,7 +131,7 @@ const navLinks = rawNavLinks.map((link) => ({
                 <div class="pt-2 border-t border-white/10">
                   <div class="nav-button-wrapper w-full flex">
                     <a href="/register" class="primary-button-dark w-full justify-center !py-3">
-                      <span>Join Free</span>
+                      <span>Join Us</span>
                       <svg class="w-4 h-4 text-[#fbaf17]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
@@ -156,12 +155,12 @@ const navLinks = rawNavLinks.map((link) => ({
       aria-label="Mobile Persistent Roster Registration"
       class="fixed bottom-3 inset-x-3 sm:inset-x-6 z-40 lg:hidden max-w-md mx-auto transition-all duration-300 pb-[env(safe-area-inset-bottom,0px)]"
     >
-      <div class="nav-button-wrapper w-full flex shadow-[0_10px_35px_rgba(0,0,0,0.95),0_0_24px_rgba(0,240,255,0.3)]">
+      <div class="nav-button-wrapper w-full flex shadow-[0_10px_35px_rgba(0,0,0,0.95),0_0_20px_rgba(251,175,23,0.3)]">
         <a
           href="/register"
           class="primary-button-dark w-full justify-center !py-3.5 !text-[15px] font-bold"
         >
-          <span>Join Free</span>
+          <span>Join Us</span>
           <svg
             class="w-4 h-4 text-[#fbaf17] shrink-0"
             fill="none"
