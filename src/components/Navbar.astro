@@ -3,16 +3,13 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isRegisterPage = currentPath === '/register';
 
 const rawNavLinks = [
-  { label: 'Games', hash: 'games' },
-  { label: 'Rewards & Reach', hash: 'reach' },
-  { label: 'Events', hash: 'events' },
-  { label: 'Community', hash: 'community' },
+  { label: 'Games', href: isRegisterPage ? '/#games' : '#games' },
+  { label: 'Rewards & Reach', href: isRegisterPage ? '/#reach' : '#reach' },
+  { label: 'Events', href: isRegisterPage ? '/#events' : '#events' },
+  { label: 'Community', href: isRegisterPage ? '/#community' : '#community' },
 ];
 
-const navLinks = rawNavLinks.map((link) => ({
-  label: link.label,
-  href: isRegisterPage ? `/#${link.hash}` : `#${link.hash}`,
-}));
+const navLinks = rawNavLinks;
 ---
 
 <header
@@ -80,6 +77,20 @@ const navLinks = rawNavLinks.map((link) => ({
 
       <!-- Right Conversion CTA + Mobile Drawer Trigger -->
       <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- "Check Status" Action Pill - Matches the Carry1st / Tribe secondary nav pill style -->
+        <button
+          type="button"
+          data-status-drawer-trigger
+          class:list={[
+            "inline-flex items-center justify-center rounded-full text-xs sm:text-[14px] font-semibold transition-all duration-150 active:scale-95 cursor-pointer",
+            isRegisterPage
+              ? "px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 shadow-xs"
+              : "px-3.5 sm:px-4 py-2 sm:py-2.5 bg-transparent hover:bg-white text-white hover:text-black border-2 border-white/30 hover:border-white",
+          ]}
+        >
+          Check Status
+        </button>
+
         <!-- Desktop Roster CTA (Hidden on mobile and hidden on /register) -->
         {
           !isRegisterPage && (
@@ -114,6 +125,14 @@ const navLinks = rawNavLinks.map((link) => ({
               <span class="text-[10px] text-[#fbaf17] font-mono">KYU × TRIBE</span>
             </div>
             <div class="flex flex-col gap-1.5">
+              <button
+                type="button"
+                data-status-drawer-trigger
+                class="mobile-nav-link text-left px-3.5 py-3 rounded-xl text-[15px] font-medium text-white/90 hover:text-black hover:bg-[#fbaf17] transition-colors flex items-center justify-between active:scale-[0.99] cursor-pointer"
+              >
+                <span>Check Status</span>
+                <span class="text-xs text-white/40">Open &rarr;</span>
+              </button>
               {
                 navLinks.map((link) => (
                   <a
@@ -227,8 +246,8 @@ const navLinks = rawNavLinks.map((link) => ({
     }
 
     // Close on navigation link tap
-    mobileDetails.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
+    mobileDetails.querySelectorAll('a, button').forEach((elem) => {
+      elem.addEventListener('click', () => {
         mobileDetails.removeAttribute('open');
       });
     });
@@ -240,4 +259,12 @@ const navLinks = rawNavLinks.map((link) => ({
       }
     });
   }
+
+  // Bind all [data-status-drawer-trigger] buttons to dispatch 'open-status-drawer'
+  document.querySelectorAll('[data-status-drawer-trigger]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.dispatchEvent(new CustomEvent('open-status-drawer'));
+    });
+  });
 </script>

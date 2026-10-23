@@ -138,7 +138,10 @@ interface RegistrationApiResponse {
 // Configurable backend URL with live production fallback
 const BACKEND_API_URL =
   (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_API_URL) ||
-  'https://kyu-esports-api-d0a8e4fnd5gcg7gt.northeurope-01.azurewebsites.net';
+  (typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:8000'
+    : 'https://kyu-esports-api-d0a8e4fnd5gcg7gt.northeurope-01.azurewebsites.net');
 
 // Cloudflare Turnstile Public Site Key (Defaults to Cloudflare's official testing key if not set)
 // Cloudflare Always-Passes Testing Key: '1x00000000000000000000AA'
@@ -357,9 +360,21 @@ export default function RegistrationEngine() {
   }, [gameDropdownOpen]);
 
   useEffect(() => {
-    // Read game from URL query param if present (e.g. /register?game=CODM)
+    // Read game or prefill search term from URL query param if present
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get('query');
+      if (queryParam) {
+        const val = decodeURIComponent(queryParam).trim();
+        if (val.includes('@')) {
+          setFormData((prev) => ({ ...prev, carry1stEmail: val }));
+        } else if (val.startsWith('0') || val.startsWith('+254')) {
+          setFormData((prev) => ({ ...prev, whatsappNumber: val }));
+        } else if (val.length > 2) {
+          setFormData((prev) => ({ ...prev, regNumber: val.toUpperCase() }));
+        }
+      }
+
       const gameParam = urlParams.get('game');
       if (gameParam) {
         const decoded = decodeURIComponent(gameParam).toLowerCase();
@@ -535,7 +550,8 @@ export default function RegistrationEngine() {
         turnstile_token: turnstileToken,
       };
 
-      const response = await fetch(`${BACKEND_API_URL}/api/register`, {
+      const baseUrl = (BACKEND_API_URL || '').replace(/\/+$/, '');
+      const response = await fetch(`${baseUrl}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -958,19 +974,25 @@ export default function RegistrationEngine() {
                 </button>
               </div>
 
-              {/* Quick Status Link for Already Registered Students */}
-              <div className="text-center pt-2">
-                <a
-                  href={statusWaLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-slate-500 hover:text-[#00a1e1] inline-flex items-center gap-1 transition-colors"
+              {/* Quick Status Lookup Link for Students */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const query = formData.regNumber || formData.carry1stEmail || formData.whatsappNumber;
+                    window.dispatchEvent(
+                      new CustomEvent('open-status-drawer', {
+                        detail: query ? { query } : undefined,
+                      })
+                    );
+                  }}
+                  className="font-semibold text-[#00a1e1] hover:text-[#0a6bd1] hover:underline inline-flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
-                  <span>Already registered?</span>
-                  <span className="underline font-semibold text-[#00a1e1]">
-                    Check National Tribe status on WhatsApp &rarr;
-                  </span>
-                </a>
+                  <svg className="w-4 h-4 text-[#fbaf17]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span>Already signed up? Check your live roster &amp; wallet status &rarr;</span>
+                </button>
               </div>
             </form>
           </div>

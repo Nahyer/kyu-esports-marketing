@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import StatusSlideOver from '../components/StatusSlideOver';
 
 interface Props {
   title?: string;
@@ -35,5 +36,7 @@ const {
   </head>
   <body class="bg-[#121110] text-white antialiased selection:bg-[#fbaf17] selection:text-black min-h-[100dvh] flex flex-col">
     <slot />
+    {/* Global Slide-Over Status Drawer */}
+    <StatusSlideOver client:idle />
   </body>
 </html>
