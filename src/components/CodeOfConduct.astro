@@ -1,36 +1,64 @@
 ---
-const governanceStandards = [
+const communityValues = [
   {
-    number: '01',
     title: 'Everyone is Welcome',
     description:
-      'If you play games—whether it is Call of Duty, eFootball, or Candy Crush on your phone—you are a gamer. No gatekeeping, ever.',
-    accent: '#fbaf17',
-    tag: 'TRIBE MANIFESTO',
+      'If you play games, you belong here. No gatekeeping, ever.',
+    icon: '/images/values/have-fun.svg',
+    // Card 1: Kirinyaga University & Carry1st Royal Obsidian Blue
+    cardClass: 'bg-[#0f172a] border-2 border-[#1e293b]',
+    accentColor: '#00a1e1',
+    iconCentered: true,
+    colSpan: 'col-span-1',
+    watermarkClass: 'w-[65%] sm:w-[60%] -bottom-6 -right-6 opacity-10',
   },
   {
-    number: '02',
+    title: 'Pure Fair Play',
+    description:
+      'Zero cheats or hacks. Win through skill, teamwork, and respect.',
+    icon: '/images/values/play-to-win.svg',
+    // Card 2: Tribe Carry1st Electric Blue
+    cardClass: 'bg-[#00a1e1] text-white border-2 border-[#38bdf8]/40',
+    accentColor: '#ffffff',
+    iconCentered: true,
+    colSpan: 'col-span-1',
+    watermarkClass: 'w-[75%] sm:w-[70%] -bottom-6 -right-8 opacity-15',
+  },
+  {
+    title: 'Clean Clan Chats',
+    description:
+      'Focused on gaming, banter, and fixtures. No spam or drama.',
+    icon: '/images/values/be-authentic.svg',
+    // Card 3: Deep Varsity Obsidian with subtle emerald border
+    cardClass: 'bg-[#131211] border-2 border-[#22c55e]/30',
+    accentColor: '#22c55e',
+    iconCentered: true,
+    colSpan: 'col-span-1',
+    watermarkClass: 'w-[75%] sm:w-[70%] -bottom-6 -right-6 opacity-10',
+  },
+  {
     title: 'Zero Toxicity & Bullying',
     description:
       'Harassment, hate speech, and graphic posts mean an instant ban. Respect fellow students in match lobbies and in group chats.',
-    accent: '#ef4444',
-    tag: 'RESPECT MANDATE',
+    icon: '/images/values/take-ownership.svg',
+    // Card 4: Wide Card — Tribe Gold Accent with high contrast dark text
+    cardClass: 'bg-[#fbaf17] text-black border-2 border-[#fbb529]',
+    accentColor: '#000000',
+    iconCentered: false,
+    colSpan: 'col-span-1 md:col-span-2 lg:col-span-2',
+    watermarkClass: 'w-[45%] sm:w-[35%] -bottom-6 -right-4 opacity-15 invert',
   },
   {
-    number: '03',
-    title: 'Pure Fair Play',
+    title: 'Represent Kirinyaga',
     description:
-      'No cheats, hacks, or unapproved third-party tools. Winners win through pure skill, good sportsmanship, and teamwork.',
-    accent: '#00a1e1',
-    tag: 'FAIR PLAY ONLY',
-  },
-  {
-    number: '04',
-    title: 'Clean WhatsApp Clan Chats',
-    description:
-      'Keep our campus groups focused on gaming, match times, and friendly banter. No spam, unsolicited ads, or political drama.',
-    accent: '#22c55e',
-    tag: 'COMMUNITY CHAT RULES',
+      'Squad up with campus teammates to challenge rival universities and bring trophies home.',
+    icon: '/images/values/solve-hard-problems.svg',
+    // Card 5: Emerald Varsity Win
+    cardClass: 'bg-gradient-to-br from-[#15803d] to-[#166534] text-white border-2 border-emerald-400/30',
+    accentColor: '#ffffff',
+    iconCentered: false,
+    colSpan: 'col-span-1 md:col-span-2 lg:col-span-1',
+    watermarkClass: 'w-[70%] sm:w-[60%] -bottom-6 -right-6 opacity-15',
   },
 ];
 ---
@@ -40,38 +68,51 @@ const governanceStandards = [
     <div class="container-large">
       <div class="padding-vertical padding-huge">
         <!-- Section Header -->
-        <div class="flex flex-col items-start lg:items-center lg:text-center mb-12">
-          <h2 class="heading-section text-white max-w-4xl mb-4">
-            Our Community. <span class="text-tribe-gold">Play Hard, Stay Respectful.</span>
+        <div class="flex flex-col items-start lg:items-center lg:text-center mb-10 sm:mb-14">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#fbaf17] mb-2">
+            COMMUNITY &amp; CODE OF CONDUCT
+          </p>
+          <h2 class="heading-hero text-white tracking-wider mb-4">
+            OUR COMMUNITY VALUES
           </h2>
-          <p class="text-[17px] sm:text-[19px] leading-[1.6] text-white/80 max-w-3xl">
-            Our gaming community is open to all Kirinyaga students. We keep our WhatsApp clans and lobbies positive, fair, and welcoming for everyone.
+          <p class="text-[16px] sm:text-[18px] lg:text-[19px] leading-[1.6] text-white/80 max-w-2xl font-normal">
+            Play hard, stay respectful. The code of conduct that keeps Kirinyaga University Esports welcoming, competitive, and fun for all students.
           </p>
         </div>
 
-        <!-- The 4 Governance Standards (2x2 26px Frosted-Glass Grid) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <!-- Bento Grid System using the join-us.html Architecture & Our Brand Colors -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {
-            governanceStandards.map((std) => (
-              <article class="glass-feature-card flex flex-col justify-between">
-                <div>
-                  <div class="mb-5">
-                    <div
-                      class="w-12 h-12 rounded-xl flex items-center justify-center font-mono text-lg font-bold border"
-                      style={`color: ${std.accent}; border-color: ${std.accent}50; background-color: ${std.accent}15;`}
-                    >
-                      {std.number}
-                    </div>
-                  </div>
+            communityValues.map((val) => (
+              <article
+                class={`group relative rounded-[24px] sm:rounded-[28px] overflow-hidden p-6 sm:p-8 lg:p-9 min-h-[300px] sm:min-h-[340px] lg:min-h-[370px] flex flex-col justify-between ${val.cardClass} ${val.colSpan} transition-transform duration-200 ease-out hover:-translate-y-1.5 cursor-default select-none shadow-md`}
+              >
+                <!-- Large Translucent Silhouette Watermark in Background -->
+                <img
+                  src={val.icon}
+                  alt=""
+                  class={`pointer-events-none absolute object-contain select-none transition-transform duration-500 ease-out group-hover:scale-105 ${val.watermarkClass}`}
+                  aria-hidden="true"
+                  loading="lazy"
+                />
 
-                  <h3 class="text-xl sm:text-2xl font-bold text-white">
-                    {std.title}
+                <!-- Top Primary Icon -->
+                <div class={`relative z-10 w-full flex ${val.iconCentered ? 'justify-center pt-2 sm:pt-4' : 'justify-start pt-1'} mb-8 sm:mb-12`}>
+                  <img
+                    src={val.icon}
+                    alt=""
+                    class={`h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-110 ${val.cardClass.includes('text-black') ? 'invert' : ''}`}
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- Bottom Typography Content Overlay -->
+                <div class="relative z-10 flex flex-col text-left">
+                  <h3 class={`text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-2 sm:mb-2.5 tracking-tight ${val.cardClass.includes('text-black') ? 'text-black' : 'text-white'}`}>
+                    {val.title}
                   </h3>
-
-                  <div class="feature-divider" />
-
-                  <p class="text-[15px] sm:text-[16px] leading-[1.65] text-white/85">
-                    {std.description}
+                  <p class={`text-[15px] sm:text-[16px] leading-snug font-normal max-w-md ${val.cardClass.includes('text-black') ? 'text-black/85' : 'text-white/85'}`}>
+                    {val.description}
                   </p>
                 </div>
               </article>

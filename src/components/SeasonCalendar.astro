@@ -87,12 +87,12 @@ const getBadgeClasses = (style: string) => {
         </div>
 
         <!-- Elevated 26px Rounded Schedule Matrix (.page-wrapper.dark archetype) -->
-        <div class="rounded-[20px] sm:rounded-[26px] bg-[#191f2a] border-[2px] sm:border-[3px] border-[#202835] overflow-hidden shadow-2xl">
+        <div class="rounded-[20px] sm:rounded-[26px] bg-[#191f2a] border-[2px] sm:border-[3px] border-[#202835] overflow-hidden">
           <!-- Desktop Architectural Table -->
           <div class="hidden md:block overflow-x-auto">
             <table class="w-full text-left border-collapse">
               <thead>
-                <tr class="bg-[#161b25] border-b-2 border-[#202835] text-xs font-mono uppercase tracking-[0.14em] text-[#7e8a9e]">
+                <tr class="bg-[#161b25] border-b-2 border-[#202835] text-xs font-semibold uppercase tracking-[0.12em] text-[#7e8a9e]">
                   <th class="py-5 px-7">Month</th>
                   <th class="py-5 px-7">Event</th>
                   <th class="py-5 px-7">Format</th>
@@ -103,7 +103,7 @@ const getBadgeClasses = (style: string) => {
                 {
                   seasonSchedule.map((row) => (
                     <tr class="hover:bg-white/[0.03] transition-colors">
-                      <td class="py-5 px-7 font-mono text-sm font-bold text-[#fbaf17] whitespace-nowrap">
+                      <td class="py-5 px-7 text-sm font-bold text-[#fbaf17] whitespace-nowrap">
                         {row.period}
                       </td>
                       <td class="py-5 px-7 text-[17px] font-bold text-white whitespace-nowrap">
@@ -111,7 +111,7 @@ const getBadgeClasses = (style: string) => {
                       </td>
                       <td class="py-5 px-7 whitespace-nowrap">
                         <span
-                          class={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono uppercase tracking-wider border ${getBadgeClasses(
+                          class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${getBadgeClasses(
                             row.formatStyle
                           )}`}
                         >
@@ -134,11 +134,11 @@ const getBadgeClasses = (style: string) => {
               seasonSchedule.map((row) => (
                 <div class="p-4.5 xs:p-5 sm:p-6 flex flex-col gap-2.5 sm:gap-3">
                   <div class="flex flex-wrap xs:flex-nowrap items-center justify-between gap-2">
-                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#fbaf17]">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#fbaf17]">
                       {row.period}
                     </span>
                     <span
-                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] xs:text-[11px] font-mono uppercase tracking-wider border ${getBadgeClasses(
+                      class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] xs:text-[11px] font-semibold uppercase tracking-wider border ${getBadgeClasses(
                         row.formatStyle
                       )}`}
                     >
